@@ -85,11 +85,17 @@ Future<void> predData() async {
       interpreter.run([input], output);
       print(output[0][0]);
 
-      setState(() {
-        predValue = output[0][0].toString();
-        // Update the input list with the new predicted value
-        input.setAll(0, input.sublist(1)..add(num.parse(predValue)));
-      });
+    setState(() {
+      predValue = output[0][0].toString();
+      // Update the input list with the new predicted value
+      input.setAll(0, input.sublist(1)..add(num.parse(predValue)));
+      // Multiply the first element by 230
+    });
+    }
+        for (int i = 0; i < 5; i++) {
+        setState(() {
+          input[i] *= 230;
+        });
     }
   } else {
     print("Failed");
@@ -127,15 +133,24 @@ Future<void> predData() async {
             ),
             Container(
               margin: EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
-              child: SfSparkLineChart(
-                trackball: const SparkChartTrackball(
-                  activationMode: SparkChartActivationMode.tap,
-                ),
-                marker: const SparkChartMarker(
-                  displayMode: SparkChartMarkerDisplayMode.all,
-                ),
-                labelDisplayMode: SparkChartLabelDisplayMode.all,
-                data: input.where((value) => value.isFinite).toList(),
+              child: Column(
+                children: [
+                  SizedBox(height: 8),
+                  SfSparkLineChart(
+                    trackball: const SparkChartTrackball(
+                      activationMode: SparkChartActivationMode.tap,
+                    ),
+                    marker: const SparkChartMarker(
+                      displayMode: SparkChartMarkerDisplayMode.all,
+                    ),
+                    labelDisplayMode: SparkChartLabelDisplayMode.all,
+                    data: input.where((value) => value.isFinite).toList(),
+                  ),
+                  Text(
+                    "Wattage",
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                ],
               ),
             ),
           ],

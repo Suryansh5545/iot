@@ -69,7 +69,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         backgroundColor: const Color(0xFF1E6991),
         title: const Text(
-          "Introduction to IOT",
+          "Powerify",
           style: TextStyle(
             color: Colors.white,
           ),
@@ -140,7 +140,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 );
               },
-              child: const Text("Navigate to PredModel"),
+              child: const Text("Navigate to Prediction"),
             ),
           ],
         ),
